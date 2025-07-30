@@ -9,7 +9,6 @@ import { Buttons } from "./buttons";
 
 // TODO: Extract carousel + Buttons to ui and import here
 // TODO: Make use of the skeleton loader
-// FIXME: push not working in vercel
 
 const LastReads = ({ title, books }: LastReadsProps) => {
   const scrollRef = useRef<HTMLUListElement>(null);
