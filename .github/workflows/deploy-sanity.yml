@@ -23,7 +23,6 @@ jobs:
       SANITY_STUDIO_DATASET: ${{ secrets.SANITY_STUDIO_DATASET }}
       SANITY_STUDIO_TITLE: ${{ secrets.SANITY_STUDIO_TITLE }}
       SANITY_STUDIO_PRESENTATION_URL: ${{ secrets.SANITY_STUDIO_PRESENTATION_URL }}
-      HOST_NAME: ${{ github.head_ref || github.ref_name }}
 
     steps:
       - name: Checkout repository
@@ -67,11 +66,7 @@ jobs:
       - name: Set Studio Hostname
         id: set-hostname
         run: |
-          if [ "${{ github.ref_name }}" = "main" ]; then
-            echo "hostname=${{ env.SANITY_STUDIO_PRESENTATION_URL }}" >> $GITHUB_OUTPUT
-          else
-            echo "hostname=${{ env.HOST_NAME }}-${{ env.SANITY_STUDIO_PRESENTATION_URL }}" >> $GITHUB_OUTPUT
-          fi
+          echo "hostname=${{ env.SANITY_STUDIO_PRESENTATION_URL }}" >> $GITHUB_OUTPUT
 
       - name: Deploy Sanity Studio
         if: steps.check-dependabot.outputs.is_dependabot != 'true'
