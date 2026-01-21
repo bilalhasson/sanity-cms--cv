@@ -26,6 +26,37 @@ flowchart LR
     PARENT([Parent Status])
 ```
 
+```mermaid
+flowchart TB
+    subgraph Example1 [Example 1: Mixed Early Statuses]
+        E1_SUB["Subtasks: [New, In Progress, Code Review]"]
+        E1_LOGIC["Min = New, but work started"]
+        E1_RESULT["Parent = In Progress ✓"]
+        E1_SUB --> E1_LOGIC --> E1_RESULT
+    end
+
+    subgraph Example2 [Example 2: All Past In Progress]
+        E2_SUB["Subtasks: [Code Review, Ready to Deploy, Done]"]
+        E2_LOGIC["Min = Code Review"]
+        E2_RESULT["Parent = Code Review ✓"]
+        E2_SUB --> E2_LOGIC --> E2_RESULT
+    end
+
+    subgraph Example3 [Example 3: Single Subtask]
+        E3_SUB["Subtask: [Failed Testing]"]
+        E3_LOGIC["Single subtask = mirror"]
+        E3_RESULT["Parent = Failed Testing ✓"]
+        E3_SUB --> E3_LOGIC --> E3_RESULT
+    end
+
+    subgraph Example4 [Example 4: Failed Testing Multi]
+        E4_SUB["Subtasks: [Failed Testing, Code Review]"]
+        E4_LOGIC["Failed Testing + others"]
+        E4_RESULT["Parent = In Progress ✓"]
+        E4_SUB --> E4_LOGIC --> E4_RESULT
+    end
+```
+
 ## Features
 
 ### Monorepo Structure
