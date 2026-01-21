@@ -2,6 +2,30 @@
 
 A modern, full-stack monorepo template built with Next.js App Router, Sanity CMS, Shadcn UI, and TurboRepo.
 
+
+```mermaid
+flowchart LR
+    subgraph StatusOrder [Status Priority Order: Lowest → Highest]
+        direction LR
+        S1[1. New] --> S2[2. In Progress]
+        S2 --> S3[3. Code Review]
+        S3 --> S4[4. Ready for Release Branch]
+        S4 --> S5[5. Ready to Deploy]
+        S5 --> S6[6. Testing]
+        S6 --> S7[7. LMC Testing & Sign Off]
+        S7 --> S8[8. Done]
+    end
+
+    subgraph Special [Special Statuses]
+        direction TB
+        B[Blocked] -.->|Only if ALL blocked| PARENT
+        R[Rejected] -.->|Only if ALL rejected| PARENT
+        F[Failed Testing] -.->|Multi: → In Progress| PARENT
+    end
+
+    PARENT([Parent Status])
+```
+
 ## Features
 
 ### Monorepo Structure
